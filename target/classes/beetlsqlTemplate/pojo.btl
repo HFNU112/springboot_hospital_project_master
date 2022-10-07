@@ -1,0 +1,20 @@
+package ${package};
+import lombok.*;
+${imports}
+${implSerializable?"import java.io.Serializable;"}
+
+@Table(name="${table}")
+@Data
+@NoArgsConstructor
+public class ${className} ${!isEmpty(ext)?"extends "+ext} ${implSerializable?"implements Serializable"} {
+
+    <%for(attr in attrs){
+            if(!isEmpty(attr.comment)){%>
+    /*
+    *${attr.comment}
+    */
+    <%        }%>
+    private ${attr.type} ${attr.name} ;
+    <%}%>
+
+}

@@ -1,0 +1,98 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>新增页面</title>
+    <link rel="stylesheet" href="${ctxPath}/css/layui.min.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <form class="layui-form"  onsubmit="return save('${ctxPath}/admin/appointment/')">
+                <input type="hidden" name="id" value="${appointment.id}">
+                <table class="layui-table">
+                    <colgroup>
+                        <col width="150" >
+                        <col width="200" >
+                        <col width="200" >
+                        <col width="200">
+                        <col width="200">
+                        <col>
+                    </colgroup>
+                    <tr>
+                        <td style="width: 100px">患者名称：</td>
+                        <td colspan="3">
+                            <div class="layui-form">
+                                <div class="layui-form-item">
+                                    <% if(appointment.id != null) {%>
+                                        ${appointment.patientName}
+                                        <input type="hidden" name="patientId" value="${appointment.patientId}">
+                                    <%}else{%>
+                                    <select name="patientId" >
+                                        <option value=""></option>
+                                        <%for(p in patientList){%>
+                                            <option value="${p.id}">${p.name}</option>
+                                        <%}%>
+                                    </select>
+                                    <%}%>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>预约科室：</td>
+                        <td>
+                            <div class="layui-form">
+                                <div class="layui-form-item">
+                                    <select id="department" lay-filter="department" >
+                                        <option value="">请选择科室</option>
+                                        <option value="精神科" ${appointment.department == '精神科' ? 'selected'}>精神科</option>
+                                        <option value="妇产科" ${appointment.department == '妇产科' ? 'selected'}>妇产科</option>
+                                        <option value="口腔科" ${appointment.department == '口腔科' ? 'selected'}>口腔科</option>
+                                        <option value="骨科" ${appointment.department == '骨科' ? 'selected'}>骨科</option>
+                                        <option value="外科" ${appointment.department == '外科' ? 'selected'}>外科</option>
+                                        <option value="内科" ${appointment.department == '内科' ? 'selected'}>内科</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                        <td>预约医生：</td>
+                        <td>
+                            <div class="layui-form">
+                                <div class="layui-form-item">
+                                    <select name="doctorId" id="doctorId">
+                                        <option value="${appointment.doctorId}">${appointment.doctorName}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>预约时间：</td>
+                        <td colspan="3">
+                                <input type="date" name="time" required  lay-verify="required" value="${appointment.time,'yyyy-MM-dd'}"  autocomplete="off" class="layui-input">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>门诊费：</td>
+                        <td colspan="3">
+                            <input type="text" name="expenses" required  lay-verify="required" value="${appointment.expenses}"  autocomplete="off" class="layui-input">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>操作：</td>
+                        <td colspan="3">
+                            <button type="submit" class="layui-btn">${appointment.id != null ? '更新' : '保存'}</button>
+                        </td>
+                    </tr>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </form>
+        </div>
+</div>
+<% include("common/formFooter.btl"){} %>
+</body>
+</html>

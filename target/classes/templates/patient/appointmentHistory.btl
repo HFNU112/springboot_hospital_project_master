@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>${session.user.username} - 预约记录</title>
+        <link rel="stylesheet" href="${ctxPath}/css/layui.min.css">
+        <link rel="stylesheet" href="${ctxPath}/css/normalize.css" type="text/css"/>
+        <link rel="stylesheet" href="${ctxPath}/css/secondary.css" type="text/css"/>
+        <script language="javascript" type="text/javascript" src="${ctxPath}/js/KunyiHTML5.min.js"></script>
+        <script language="javascript" type="text/javascript" src="${ctxPath}/js/Kunyilibrary.js"></script>
+        <style>
+            .patient-nav td {
+                padding: 0 10px;
+                font-size: 16px;
+            }
+
+            .patient-username {
+                padding-right: 10px;
+                font-weight: bold;
+            }
+            .app-btn {
+                width: 1200px;
+                margin: auto;
+                text-align: right;
+                padding: 10px;
+            }
+            .layui-laypage .layui-laypage-curr .layui-laypage-em {
+                background-color: #1E9FFF;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="layui-layout layui-layout-admin">
+            <!-- 引入公共头部开始 -->
+            <% include("common/header.btl"){} %>
+            <!-- 引入公共头部结束 -->
+
+            <!-- 内容主体区域 -->
+            <hr style="magin-top:30px;">
+            <div class="app-btn">
+                <a class="layui-btn layui-btn-normal"  href="${ctxPath}/patient/appointment">在线预约</a>
+                <a class="layui-btn layui-btn-normal"  href="javascript:;" onclick="createPDF()">打印挂号单</a>
+            </div>
+            <div class="layui-form" style="width: 1200px;margin: 0 auto;clear: both;">
+                <table id="table" class="layui-table">
+                    <colgroup>
+                        <col width="150">
+                        <col width="150">
+                        <col width="150">
+                        <col width="150">
+                        <col width="150">
+                        <col>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>姓名</th>
+                            <th>预约医生</th>
+                            <th>预约时间</th>
+                            <th>费用</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%for(p in page.list){%>
+                            <tr>
+                                <td>${pLP.index}</td>
+                                <td>${p.patientName}</td>
+                                <td>${p.doctorName}</td>
+                                <td>${p.time,'yyyy-MM-dd'}</td>
+                                <td>${p.expenses}(元)</td>
+                            </tr>
+                        <%}%>
+                    </tbody>
+                </table>
+                <div id="pagination"></div>
+            </div>
+            <div style="height: 400px;"></div>
+        </div>
+        <!-- 引入公共头部开始 -->
+        <% include("common/footer.btl"){} %>
+        <!-- 引入公共头部结束 -->
+        <!-- 引入分页脚本 start -->
+        <% include("../admin/common/page.btl"){} %>
+        <!-- 引入分页脚本 end -->
+        <!-- 引入公共js start -->
+        <% include("common/appointment-js.btl"){} %>
+        <!-- 引入公共js end -->
+    </body>
+</html>

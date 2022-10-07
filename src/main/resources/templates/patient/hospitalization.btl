@@ -1,0 +1,119 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>${session.user.username} - 住院信息</title>
+    <link rel="stylesheet" href="${ctxPath}/css/layui.min.css">
+    <link rel="stylesheet" href="${ctxPath}/css/normalize.css" type="text/css"/>
+    <link rel="stylesheet" href="${ctxPath}/css/secondary.css" type="text/css"/>
+    <script language="javascript" type="text/javascript" src="${ctxPath}/js/KunyiHTML5.min.js"></script>
+    <script language="javascript" type="text/javascript" src="${ctxPath}/js/Kunyilibrary.js"></script>
+</head>
+<body >
+<div class="layui-layout layui-layout-admin">
+    <!-- 引入公共头部开始 -->
+    <% include("common/header.btl"){} %>
+    <!-- 引入公共头部结束 -->
+
+    <!-- 内容主体区域 -->
+    <div style="width: 1200px;margin: 40px auto;clear: both;">
+        <table class="layui-table" lay-even lay-skin="nob">
+            <colgroup>
+                <col width="150">
+                <col width="200">
+                <col width="200">
+                <col width="200">
+                <col width="200">
+                <col width="200">
+            </colgroup>
+            <tr>
+                <td style="width: 100px">楼层：</td>
+                <td>${hospitalization.floor}</td>
+            </tr>
+            <tr>
+                <td>门牌号：</td>
+                <td>
+                    ${hospitalization.door}
+                </td>
+            </tr>
+            <tr>
+                <td>床号：</td>
+                <td>
+                    ${hospitalization.bed}
+                </td>
+            </tr>
+            <tr>
+                <td>患病：</td>
+                <td>
+                    ${hospitalization.patientName}
+                </td>
+            </tr>
+            <tr>
+                <td>住院时间：</td>
+                <td>
+                    ${hospitalization.intime,'yyyy-MM-dd'}
+                </td>
+            </tr>
+            <tr>
+                <td>出院时间：</td>
+                <td>
+                    ${hospitalization.outtime,'yyyy-MM-dd'}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button class="layui-btn layui-btn-normal" onclick="showHistroy()">住院历史信息</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <hr>
+    <table id="table" class="layui-table" lay-even lay-skin="nob" style="width: 1200px;margin: 0 auto;display: none">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="150">
+            <col width="150">
+            <col width="150">
+            <col width="150">
+            <col width="300">
+            <col>
+        </colgroup>
+        <thead>
+        <tr>
+            <th>楼层号</th>
+            <th>门牌号</th>
+            <th>床号</th>
+            <th>患者</th>
+            <th>患病</th>
+            <th>住院时间</th>
+            <th>出院时间</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>${hospitalization.floor}</td>
+                <td>${hospitalization.door}</td>
+                <td>${hospitalization.bed}</td>
+                <td>${hospitalization.patientName}</td>
+                <td>${hospitalization.medicalName}</td>
+                <td>${hospitalization.intime,'yyyy-MM-dd'}</td>
+                <td>${hospitalization.outtime,'yyyy-MM-dd'}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="height: 400px;"></div>
+</div>
+<!-- 引入公共头部开始 -->
+<% include("common/footer.btl"){} %>
+<!-- 引入公共头部结束 -->
+<script src="${ctxPath}/js/layui.all.js"></script>
+<script src="${ctxPath}/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    function showHistroy() {
+        $("#table").show();
+    }
+</script>
+</body>
+</html>

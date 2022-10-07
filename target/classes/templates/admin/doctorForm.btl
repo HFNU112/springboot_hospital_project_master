@@ -1,0 +1,92 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>医生表单页</title>
+    <link rel="stylesheet" href="${ctxPath}/css/layui.min.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;">
+        <form class="layui-form"  onsubmit="return save('${ctxPath}/admin/doctor/')">
+            <input type="hidden" name="id" value="${doctor.id}">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150" >
+                    <col width="200" >
+                    <col width="200" >
+                    <col width="200" >
+                    <col width="200" >
+                    <col width="200" >
+                    <col width="200" >
+                    <col>
+                </colgroup>
+                <tr>
+                    <td style="width: 100px">姓名：</td>
+                    <td>
+                        <input type="text" name="name" required  lay-verify="required" value="${doctor.name}"  autocomplete="off" class="layui-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td>是否为专家：</td>
+                    <td>
+                        <select name="expert">
+                            <option value="">请选择</option>
+                            <option value="0" ${doctor.expert == 0 ? 'selected'}>非专家</option>
+                            <option value="1" ${doctor.expert == 1 ? 'selected'}>专家</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>年龄：</td>
+                    <td>
+                        <input type="text" name="age" required  lay-verify="required" value="${doctor.age}"  autocomplete="off" class="layui-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td>身份证号：</td>
+                    <td>
+                        <input type="text" name="certId" required  lay-verify="required" value="${doctor.certId}"  autocomplete="off" class="layui-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td>性别：</td>
+                    <td>
+                        <input type="radio" name="sex" class="layui-input" title="男" value="0" ${doctor.sex == 0 ? 'checked'}>
+                        <input type="radio" name="sex" class="layui-input" title="女" value="1" ${doctor.sex == 1 ? 'checked'}>
+                    </td>
+                </tr>
+                <tr>
+                    <td>部门：</td>
+                    <td>
+                        <select name="department" >
+                            <option value="口腔科" ${doctor.department == '口腔科' ? 'checked'}>口腔科</option>
+                            <option value="妇产科" ${doctor.department == '妇产科' ? 'checked'}>妇产科</option>
+                            <option value="内科"   ${doctor.department == '内科' ? 'checked'}>内科</option>
+                            <option value="外科"   ${doctor.department == '外科' ? 'checked'}>外科</option>
+                            <option value="精神科" ${doctor.department == '精神科' ? 'checked'}>精神科</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>家庭住址：</td>
+                    <td>
+                        <input type="text" name="address" required value="${doctor.address}"  lay-verify="required"  autocomplete="off" class="layui-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td>操作：</td>
+                    <td>
+                        <button type="submit" class="layui-btn">${doctor.id != null ? '更新' : '保存'}</button>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red;" id="message"></span>
+                    </td>
+                </tr>
+                <tbody>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+<% include("common/formFooter.btl"){} %>
+</body>
+</html>

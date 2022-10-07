@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>预约挂号页面</title>
+        <link rel="stylesheet" href="${ctxPath}/css/layui.min.css">
+        <link rel="stylesheet" href="${ctxPath}/css/normalize.css" type="text/css"/>
+        <link rel="stylesheet" href="${ctxPath}/css/secondary.css" type="text/css"/>
+        <script language="javascript" type="text/javascript" src="${ctxPath}/js/KunyiHTML5.min.js"></script>
+        <script language="javascript" type="text/javascript" src="${ctxPath}/js/Kunyilibrary.js"></script>
+        <style>
+            .patient-nav td {
+                padding: 0 10px;
+                font-size: 16px;
+            }
+            .patient-username {
+                padding-right: 10px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="layui-layout layui-layout-admin">
+            <!-- 引入公共头部开始 -->
+            <% include("common/header.btl"){} %>
+            <!-- 引入公共头部结束 -->
+
+            <!-- 内容主体区域 -->
+            <div style="padding: 15px; width: 1200px;margin: auto">
+                <form class="layui-form" onsubmit="return appointment()">
+                    <table class="layui-table" lay-even lay-skin="nob">
+                        <tr>
+                            <td style="white-space:nowrap">患者：</td>
+                            <td colspan="2">${patient.name}</td>
+                        </tr>
+                        <tr>
+                            <td style="white-space:nowrap">科室：</td>
+                            <td colspan="2">
+                                <div class="layui-form">
+                                    <div class="layui-form-item">
+                                        <select id="department" lay-filter="department">
+                                            <option value="">请选择科室</option>
+                                            <option value="精神科">精神科</option>
+                                            <option value="妇产科">妇产科</option>
+                                            <option value="口腔科">口腔科</option>
+                                            <option value="骨科">骨科</option>
+                                            <option value="外科">外科</option>
+                                            <option value="内科">内科</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="white-space:nowrap">预约医生：</td>
+                            <td colspan="2">
+                                <div class="layui-form">
+                                    <div class="layui-form-item">
+                                        <select name="doctorId" id="doctorId"></select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="white-space:nowrap">预约时间：</td>
+                            <td colspan="2">
+                                <input type="date" name="time" required lay-verify="required" autocomplete="off"
+                                       class="layui-input">
+                                <input type="hidden" name="patientId" required lay-verify="required" value="${patient.id}"
+                                       autocomplete="off" class="layui-input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="white-space:nowrap">门诊收费(元)：</td>
+                            <td colspan="2">
+                                <input type="text" name="expenses" required lay-verify="required" autocomplete="off"
+                                       class="layui-input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>操作：</td>
+                            <td colspan="2">
+                                <button type="submit" class="layui-btn layui-btn-normal">预约</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div style="height: 400px;"></div>
+        </div>
+        <!-- 引入公共脚部 start -->
+        <% include("common/footer.btl"){} %>
+        <!-- 引入公共脚部 end -->
+
+        <!-- 引入公共js start -->
+        <% include("common/appointment-js.btl"){} %>
+        <!-- 引入公共js end -->
+    </body>
+</html>

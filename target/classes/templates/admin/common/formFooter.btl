@@ -1,0 +1,66 @@
+<script src="${ctxPath}/js/layui.all.js"></script>
+<script src="${ctxPath}/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    layui.use('form', function(){
+        var form = layui.form;
+        form.render();
+    });
+    function save(url){
+        var d = {};
+        var _type = 'post';
+        var t = $('form').serializeArray();
+        $.each(t, function() {
+            d[this.name] = this.value;
+            if (this.name == "id" && this.value != '') {
+                _type = 'put';
+            }
+        });
+
+        var json=JSON.stringify(d);
+        $.ajax({
+            url:url,
+            type:_type,
+            data:json,
+            contentType: "application/json;charset=utf-8",
+            success:function(data){
+                console.log(data.message);
+                if (data.code == '301'){
+                    $("#message").text(data.message);
+                } else {
+                    parent.location.reload();
+                }
+            },
+            error:function (data) {
+                layer.msg(data.message, {
+                    time: 2000, //2s后自动关闭
+                });
+            }
+        });
+        return false
+    }
+    layui.use(['layer', 'form'], function(){
+        var layer = layui.layer
+            ,form = layui.form;
+        form.on('select(department)', function(data){
+            var department=(data.value);
+             $.ajax({
+                 type: 'GET',
+                 url: '${ctxPath}/admin/doctor/getList/'+department,
+                 dataType:  'json',
+                 success: function(data){
+                     $("#doctorId").empty();
+                     // data=data.doctors;
+                    data.forEach(function(item){
+                        var name=item.name;
+                        console.log(name);
+                        var id=item.id;
+                        console.log(id);
+                        $("#doctorId").append("<option value="+id+">"+name+"</option>");
+                    });
+                     form.render('select');
+                 }
+             });
+        });
+
+    });
+</script>

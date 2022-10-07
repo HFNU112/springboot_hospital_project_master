@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>预约管理</title>
+    <link rel="stylesheet" href="${ctxPath}/css/layui.min.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!-- 引入公共头部开始 -->
+    <% include("common/header.btl"){} %>
+    <!-- 引入公共头部结束 -->
+    <div class="layui-body">
+        <div style="padding: 15px;">
+            <h5>预约管理</h5>
+            <form action="${ctxPath}/admin/appointment/manage" method="get">
+                <table>
+                    <tr>
+                        <td>患者名称:</td>
+                        <td><input name="patientName" value="${patientName!''}" autocomplete="off"  class="layui-input lay-size=sm" ></td>
+                        <td>&nbsp;&nbsp;预约医生:</td>
+                        <td><input name="doctorName" value="${doctorName!''}" autocomplete="off" class="layui-input lay-size=sm" ></td>
+                        <td>   <button class="layui-btn" type="submit"><i class="layui-icon">&#xe615;</i></button></td>
+                    </tr>
+                </table>
+            </form>
+            <!-- 内容主体区域 -->
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150" >
+                    <col width="200" >
+                    <col width="200" >
+                    <col width="200" >
+                    <col width="200">
+                    <col width="200">
+                    <col width="200">
+                    <col width="200">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>预约号</th>
+                    <th>患者名称</th>
+                    <th>科室</th>
+                    <th>预约医生</th>
+                    <th>预约时间</th>
+                    <th>门诊费</th>
+                    <th>操作&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="layui-btn" onclick="showAdd('${ctxPath}/admin/appointment/')"><i class="layui-icon">&#xe608;</i> 添加</button>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <%for(a in page.list){%>
+                        <tr>
+                            <td>${aLP.index}</td>
+                            <td>${a.id}</td>
+                            <td>${a.patientName}</td>
+                            <td>${a.department}</td>
+                            <td>${a.doctorName}</td>
+                            <td>${a.time,'yyyy-MM-dd'}</td>
+                            <td>${a.expenses}(元)</td>
+                            <td>
+                                <button class="layui-btn" onclick="edit('${ctxPath}/admin/appointment/',${a.id})"><i class="layui-icon">&#xe642;</i></button>
+                                <button class="layui-btn" onclick="del('${ctxPath}/admin/appointment/',${a.id})"><i class="layui-icon">&#xe640;</i></button>
+                            </td>
+                        </tr>
+                    <%}%>
+                </tbody>
+            </table>
+            <div id="pagination"></div>
+        </div>
+    </div>
+    <!-- 引入公共脚部文件开始 -->
+    <% include("common/footer.btl"){} %>
+    <!-- 引入公共脚部文件结束 -->
+    <!-- 引入公共分页脚本文件开始 -->
+    <% include("common/page.btl"){} %>
+    <!-- 引入公共分页脚本文件结束 -->
+</div>
+</body>
+</html>

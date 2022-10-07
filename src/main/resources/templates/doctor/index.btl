@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>就医</title>
+    <link rel="stylesheet" href="${ctxPath}/css/layui.min.css">
+    <link rel="stylesheet" href="${ctxPath}/css/normalize.css" type="text/css"/>
+    <link rel="stylesheet" href="${ctxPath}/css/secondary.css" type="text/css"/>
+    <script language="javascript" type="text/javascript" src="${ctxPath}/js/KunyiHTML5.min.js"></script>
+    <script language="javascript" type="text/javascript" src="${ctxPath}/js/Kunyilibrary.js"></script>
+    <style>
+        /*分页样式*/
+        .layui-laypage .layui-laypage-curr .layui-laypage-em {
+            background-color: #1E9FFF;
+        }
+    </style>
+</head>
+<body>
+
+<div class="layui-layout layui-layout-admin">
+    <!-- 引入公共头部开始 -->
+    <% include("common/header.btl"){} %>
+    <!-- 引入公共头部结束 -->
+
+    <!-- 内容主体区域 -->
+    <div style="width: 1200px;margin: 0 auto;clear: both;">
+        <form action="${ctxPath}/doctor/index" method="get" style="margin-top: 30px;">
+            <table>
+                <tr style="font-size: 16px;">
+                    <td>患者:</td>
+                    <td><input name="patientName" autocomplete="off" class="layui-input lay-size=sm"></td>
+                    <td>&nbsp;&nbsp;预约时间:</td>
+                    <td><input name="time" type="date" autocomplete="off" class="layui-input lay-size=sm"></td>
+                    <td>
+                        <button class="layui-btn layui-btn-normal"style="width: 60px;margin: 0 auto;" type="submit"><i class="layui-icon">&#xe615;</i></button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <table class="layui-table">
+            <colgroup>
+                <col width="100">
+                <col width="100">
+                <col width="200">
+                <col width="100">
+                <col width="550">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>患者名称</th>
+                <th>预约时间</th>
+                <th>就诊状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+                <%for(p in page.list){%>
+                    <tr>
+                        <td>${pLP.index}</td>
+                        <td>${p.patientName}</td>
+                        <td>${p.time,'yyyy-MM-dd'}</td>
+                        <td>
+                            <% if(p.status=='1'){ %>
+                            <span class="layui-badge">未就诊</span>
+                            <% }else if(p.status == '2'){ %>
+                                <span class="layui-badge layui-bg-orange">就诊中</span>
+                            <% }else { %>
+                                <span class="layui-badge layui-bg-green">已完成</span>
+                            <%}%>
+                        </td>
+                        <td colspan="2">
+                            <button style="width: 120px;" class="layui-btn layui-btn-warm" onclick="seek(${p.patientId},${p.id})">就医</button>
+                            <button style="width: 120px;" class="layui-btn layui-btn-normal" onclick="check(${p.id})">查看病史</button>
+                            <button style="width: 120px;" class="layui-btn layui-btn-danger" type="button" onclick="finishSeek(${p.id})">就诊完成</button>
+                            <button style="width: 120px;" class="layui-btn" type="button" onclick="printSeek(${p.patientId},${p.id})">打印就诊单</button>
+                        </td>
+                    </tr>
+                <%}%>
+            </tbody>
+        </table>
+        <div id="pagination"></div>
+    </div>
+</div>
+<!-- 引入公共头部开始 -->
+<% include("common/footer.btl"){} %>
+<!-- 引入公共头部结束 -->
+<!-- 引入分页脚本 start -->
+<% include("../admin/common/page.btl"){} %>
+<!-- 引入分页脚本 end -->
+
+<script src="${ctxPath}/js/layui.all.js"></script>
+<script type="text/javascript">
+    function seek(id,appointmentId) {
+        layer.open({
+            type: 2,
+            title: '就医',
+            // closeBtn: 0,
+            area: ['800px', '600px'],
+            content: ['${ctxPath}/doctor/seek/' + id + "/" + appointmentId, 'yes'],
+            // btn: ['取消'],
+            yes: function (index) {
+                //事件
+                layer.close(index);
+            }
+        });
+    }
+
+    function check(id) {
+        layer.open({
+            type: 2,
+            title: '查看病史',
+            closeBtn: 0,
+            area: ['800px', '600px'],
+            content: ['${ctxPath}/doctor/medicalHistory/' + id, 'yes'],
+            btn: ['取消'],
+            yes: function (index) {
+                //事件
+                layer.close(index);
+            }
+        });
+    }
+
+
+     function finish() {
+             var d = {};
+             var t = $('form').serializeArray();
+             $.each(t, function () {
+                 d[this.name] = this.value;
+             });
+             var json = JSON.stringify(d);
+             $.ajax({
+                 url: "/hos/patient/appointment",
+                 type: 'post',
+                 data: json,
+                 contentType: "application/json;charset=utf-8",
+                 success: function (data) {
+                     layer.msg(data.message, {
+                         time: 2000, //2s后自动关闭
+                     },function () {
+                         layer.confirm('是否打印挂号单？', {
+                             btn: ['打印','取消'] //按钮
+                         }, function(){
+                             createPDF();
+                         }, function(){
+                             layer.msg('取消成功', {
+                                 time: 2000, //20s后自动关闭
+                             },function () {
+                                 window.location.href = "/hos/patient/index";
+                             });
+                         });
+
+                     });
+                 },
+                 error: function (data) {
+                     layer.msg(data.message, {
+                         time: 2000, //2s后自动关闭
+                     });
+                 }
+             });
+             return false
+         }
+
+
+
+    function printSeek(id,appointmentId){
+        $.ajax({
+            url: "${ctxPath}/doctor/printSeek/" + id + "/" + appointmentId,
+            type: 'post',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                console.log(data.message);
+                layer.alert(data.message);
+                window.open("${ctxPath}/doctor/printSeek/downPDF?patientId="+id+"&appointmentId="+appointmentId);
+            },
+            error: function (data) {
+                layer.msg(data.message, {
+                    time: 2000, //2s后自动关闭
+                });
+            }
+        });
+        return false
+    }
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<header>
+      <h1>社区公共医疗服务管理系统</h1>
+    <a class="logo" href="/home">
+        <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpicnew11.photophoto.cn%2F20161201%2Fshequweishengfuwuzhongxin-23422075_1.jpg&refer=http%3A%2F%2Fpicnew11.photophoto.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655382584&t=056b5d3a25ae1ec1d9279206afe0500c" width="300" height="100"/>
+    </a>
+
+</header>
+<nav>
+    <div class="nav">
+        <ul>
+            <li class="PMenu ${cur == 'index' ? 'current'}"><a href="${ctxPath}/home/index" class="PAMenu">网站首页</a></li>
+            <li class="PMenu ${cur == 'introduction' ? 'current'}"><a href="${ctxPath}/home/introduction" id="Nav_AMenu0" class="PAMenu" title="社区简介">社区简介</a></li>
+            <li class="PMenu ${cur == 'expert' ? 'current'}"><a href="${ctxPath}/home/expert" id="Nav_AMenu1" class="PAMenu" title="患者服务">专家团队</a></li>
+            <li class="PMenu ${cur == 'service' ? 'current'}"><a href="${ctxPath}/home/service" id="Nav_AMenu2" class="PAMenu" title="患者服务">患者服务</a></li>
+            <li class="PMenu ${cur == 'seekGuide' ? 'current'}"><a href="${ctxPath}/home/seekGuide" id="Nav_AMenu3" class="PAMenu" title="坐诊时间">坐诊时间</a></li>
+            <li class="PMenu ${cur == 'guide' ? 'current'}"><a href="${ctxPath}/home/guide" id="Nav_AMenu4" class="PAMenu" title="就医指南">就医指南</a></li>
+            <li class="PMenu ${cur == 'news' ? 'current'}"><a href="${ctxPath}/home/news" id="Nav_AMenu5" class="PAMenu" title="新闻中心">新闻中心</a></li>
+            <li class="PMenu"><a href="${ctxPath}/home/user/login" id="Nav_AMenu6" class="PAMenu" title="登录注册">登录注册</a></li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</nav>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>医生管理界面</title>
+    <link rel="stylesheet" href="${ctxPath}/css/layui.min.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!-- 引入公共头部开始 -->
+    <% include("common/header.btl"){} %>
+    <!-- 引入公共头部结束 -->
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <h5>医生管理</h5>
+            <form action="${ctxPath}/admin/doctor/manage" method="get">
+            <table>
+                <tr>
+                    <td>昵称:</td>
+                    <td><input name="name" autocomplete="off" value="${name!''}" class="layui-input lay-size=sm" ></td>
+                    <td>&nbsp;&nbsp;证件号:</td>
+                    <td><input name="certId" autocomplete="off" value="${certId!''}" class="layui-input lay-size=sm" ></td>
+                    <td>   <button class="layui-btn" type="submit"><i class="layui-icon">&#xe615;</i></button></td>
+                </tr>
+            </table>
+            </form>
+            <table class="layui-table">
+                <colgroup>
+                    <col width="100">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>昵称</th>
+                    <th>是否为专家</th>
+                    <th>年纪</th>
+                    <th>性别</th>
+                    <th>证件号</th>
+                    <th>所属部门</th>
+                    <th>家庭住址</th>
+                    <th>操作&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="layui-btn" onclick="showAdd('${ctxPath}/admin/doctor/')"><i class="layui-icon">&#xe608;</i> 添加</button>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                        <%
+                            for(doctor in page.list) {
+                        %>
+                        <tr>
+                            <td>${doctorLP.index}</td>
+                            <td>${doctor.name}</td>
+                            <td>
+                                ${doctor.expert == 1 ? '专家' : '非专家'}
+                            </td>
+                            <td>${doctor.age}</td>
+                            <td>
+                                ${doctor.sex == 0 ? '男' : '女'}
+                            </td>
+                            <td>${doctor.certId}</td>
+                            <td>${doctor.department}</td>
+                            <td>${doctor.address}</td>
+                            <td>
+                                <button class="layui-btn" onclick="edit('${ctxPath}/admin/doctor/',${doctor.id})"><i class="layui-icon">&#xe642;</i></button>
+                                <button class="layui-btn" onclick="del('${ctxPath}/admin/doctor/',${doctor.id})"><i class="layui-icon">&#xe640;</i></button>
+                            </td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                </tbody>
+            </table>
+            <div id="pagination"></div>
+        </div>
+    </div>
+    <!-- 引入公共脚部文件开始 -->
+    <% include("common/footer.btl"){} %>
+    <!-- 引入公共脚部文件结束 -->
+    <!-- 引入公共分页脚本文件开始 -->
+    <% include("common/page.btl"){} %>
+    <!-- 引入公共分页脚本文件结束 -->
+</div>
+</body>
+</html>

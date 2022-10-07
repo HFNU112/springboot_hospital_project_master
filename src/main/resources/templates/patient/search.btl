@@ -1,0 +1,207 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>${session.user.username} - 信息查询</title>
+    <link rel="stylesheet" href="${ctxPath}/css/layui.min.css">
+    <link rel="stylesheet" href="${ctxPath}/css/normalize.css" type="text/css"/>
+    <link rel="stylesheet" href="${ctxPath}/css/secondary.css" type="text/css"/>
+    <script language="javascript" type="text/javascript" src="${ctxPath}/js/KunyiHTML5.min.js"></script>
+    <script language="javascript" type="text/javascript" src="${ctxPath}/js/Kunyilibrary.js"></script>
+    <style>
+        .item{
+          float: left;
+        }
+        .item li{
+            margin-right: 40px;
+            text-align: left;
+            width: 200px;
+            padding-right: 100px;
+            /*white-space: nowrap;*/
+            /*overflow: hidden;*/
+            word-wrap: break-word;
+            word-break: break-all;
+            height:auto;
+            /*text-overflow: ellipsis;*/
+            border: 1px dotted #000;
+            border-radius: 5px;
+            box-shadow: inset 1px 1px #ccc;
+            background: #ccc;
+            font-size: 20px;
+            color: black;
+            font-family: fantasy;
+            margin-top: 10px;
+        }
+        /*#list {*/
+        /*display: block;*/
+        /*overflow: hidden;*/
+        /*white-space: nowrap;*/
+        /*}*/
+
+        /*#list li {*/
+        /*float: left;*/
+        /*list-style: none;*/
+        /*display: inline-block;*/
+        /*margin-left: 15px;*/
+        /*width: 130px;*/
+        /*}*/
+        .patient-nav td {
+            padding: 0 10px;
+            font-size: 16px;
+        }
+        .patient-username {
+            padding-right: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <!-- 引入公共头部开始 -->
+    <% include("common/header.btl"){} %>
+    <!-- 引入公共头部结束 -->
+
+    <!-- 内容主体区域 -->
+    <div style="width: 1200px;margin: 40px auto;clear: both;">
+        <form class="layui-form" action="/patient/searchinfo" style="padding-bottom: 20px;" onsubmit="return search()" method="get">
+            <table>
+                <tr>
+                    <td>查询类型：</td>
+                    <td>
+                        <select id="type" name="type">
+                            <option value="">--请选择查询类型--</option>
+                            <option value="illness">疾病</option>
+                            <option value="doctor">医生</option>
+                            <option value="drugs">药品</option>
+                        </select>
+                    </td>
+                    <td><input type="text" id="name" name="name" autocomplete="off" placeholder="请输入你要查询的内容"
+                               class="layui-input"></td>
+                    <td>
+                        <button style="width: 60px;margin-top: 0px" type="submit" class="layui-btn layui-btn-normal"><i
+                                    class="layui-icon">&#xe615;</i></button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <ul id="list" style="padding-bottom: 50px;"></ul>
+        <div style="padding: 20px; background-color: #F2F2F2; width: 1200px;">
+            <div id="content" class="layui-row layui-col-space15">
+                请根据类型查询信息
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 引入公共头部开始 -->
+<% include("common/footer.btl"){} %>
+<!-- 引入公共头部结束 -->
+<script src="${ctxPath}/js/layui.all.js"></script>
+<script src="${ctxPath}/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    function search() {
+        var name = $("#name").val();
+        var type = $("#type").val();
+        $.ajax({
+            url: "${ctxPath}/patient/searchInfo?name=" + name + "&type=" + type,
+            type: 'get',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                var json = data;
+                var type, list;
+                var str = '';
+                $("#content").empty();
+                for (var key in json) {
+                    type = key;
+                    list = json[key];
+                    if (type == 'doctor') {
+                        $.each(list, function (n, value) {
+                            if (value.expert == '1') {
+                                value.expert = '专业';
+                            } else {
+                                value.expert = '非专业';
+                            }
+                            if (value.text == null) {
+                                value.text = "无";
+                            }
+                            if (value.sex == 0) {
+                                value.sex = "男";
+                            } else {
+                                value.sex = "女";
+                            }
+                            str = "<div class=\"layui-col-md4\">\n" +
+                                "                    <div class=\"layui-card\">\n" +
+                                "                        <div class=\"layui-card-header\">医生："+ value.name +"</div>\n" +
+                                "                        <div class=\"layui-card-body\" style=\"word-break: break-word\">\n" +
+                                "                            性别：" + value.sex + "<br/>" +
+                                "                            家庭住址："+value.sex+"<br/>" +
+                                "                            年龄："+value.age+"<br/>" +
+                                "                            身份证号码："+value.certId+"<br/>" +
+                                "                            科室："+value.department+"<br/>" +
+                                "                            级别："+value.expert+"<br/>" +
+                                "                            简介："+ value.text +"\n" +
+                                "                        </div>\n" +
+                                "                    </div>\n" +
+                                "                </div>";
+                            $("#content").append(str);
+                        });
+
+                    } else if (type == 'illness') {
+                        $.each(list, function (n, value) {
+                            str = "<div class=\"layui-col-md4\">\n" +
+                                "                    <div class=\"layui-card\">\n" +
+                                "                        <div class=\"layui-card-header\">医生："+ value.name +"</div>\n" +
+                                "                        <div class=\"layui-card-body\" style=\"word-break: break-word\">\n" +
+                                "                            简介："+ value.text+"\n" +
+                                "                        </div>\n" +
+                                "                    </div>\n" +
+                                "                </div>";
+                            $("#content").append(str);
+                        });
+
+                    } else {
+                        $.each(list, function (n, value) {
+                            if (value.text == null) {
+                                value.text = "无";
+                            }
+                            if (value.type == 0) {
+                                value.type = "颗粒剂";
+                            } else if (value.type == 1) {
+                                value.type = "丸剂";
+                            } else if (value.type == 2) {
+                                value.type = "散剂";
+                            } else if (value.type == 3) {
+                                value.type = "酊剂";
+                            } else if (value.type == 4) {
+                                value.type = "片剂";
+                            } else {
+                                value.type = "胶囊剂";
+                            }
+                            str = "<div class=\"layui-col-md4\">\n" +
+                                "                    <div class=\"layui-card\">\n" +
+                                "                        <div class=\"layui-card-header\">药品名称："+ value.name +"</div>\n" +
+                                "                        <div class=\"layui-card-body\" style=\"word-break: break-word\">\n" +
+                                "                            药品类型：" + value.type + "<br/>" +
+                                "                            数量："+value.number+"<br/>" +
+                                "                            市场价："+value.price+" (元)<br/>" +
+                                "                            简介："+ value.text +"\n" +
+                                "                        </div>\n" +
+                                "                    </div>\n" +
+                                "                </div>";
+                            $("#content").append(str);
+                        });
+
+                    }
+                }
+
+            },
+            error: function (data) {
+                layer.msg(data, {
+                    time: 2000 //2s后自动关闭
+                });
+            }
+        });
+        return false;
+    }
+</script>
+</body>
+</html>

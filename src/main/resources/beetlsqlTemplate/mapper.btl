@@ -1,0 +1,10 @@
+package ${package};
+import org.beetl.sql.core.annotatoin.*;
+import org.beetl.sql.core.db.KeyHolder;
+import org.beetl.sql.core.engine.PageQuery;
+import org.beetl.sql.core.mapper.BaseMapper;
+${imports}
+
+public interface ${className} extends BaseMapper<${entityClass}> {
+    //
+}

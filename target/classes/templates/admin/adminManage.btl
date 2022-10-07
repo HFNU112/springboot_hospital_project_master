@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>管理员管理</title>
+    <link rel="stylesheet" href="${ctxPath}/css/layui.min.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!-- 引入公共头部开始 -->
+    <% include("common/header.btl"){} %>
+    <!-- 引入公共头部结束 -->
+
+    <div class="layui-body">
+
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <h5>管理员管理</h5>
+            <form action="${ctxPath}/admin/user/manage" method="get">
+                <table>
+                    <tr>
+                        <td>账号:</td>
+                        <td><input name="username" value="${username!''}" autocomplete="off"  class="layui-input lay-size=sm" ></td>
+                        <td><button class="layui-btn" type="submit"><i class="layui-icon">&#xe615;</i></button></td>
+                    </tr>
+                </table>
+            </form>
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col width="200">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>账号</th>
+                    <th>密码</th>
+                    <th>操作&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="layui-btn" onclick="showAdd('${ctxPath}/admin/user/')"><i class="layui-icon">&#xe608;</i> 添加</button>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <%for(a in page.list){%>
+                    <tr>
+                    <td>${aLP.index}</td>
+                    <td>${a.username}</td>
+                    <td>**********</td>
+                        <td>
+                            <button class="layui-btn" onclick="edit('${ctxPath}/admin/user/',${a.id})"><i class="layui-icon">&#xe642;</i></button>
+                            <button class="layui-btn" onclick="del('${ctxPath}/admin/user/',${a.id})"><i class="layui-icon">&#xe640;</i></button>
+                        </td>
+                    </tr>
+                <%}%>
+                </tbody>
+            </table>
+            <div id="pagination"></div>
+        </div>
+    </div>
+    <!-- 引入公共脚部文件开始 -->
+    <% include("common/footer.btl"){} %>
+    <!-- 引入公共脚部文件结束 -->
+    <!-- 引入公共分页脚本文件开始 -->
+    <% include("common/page.btl"){} %>
+    <!-- 引入公共分页脚本文件结束 -->
+
+</div>
+</body>
+</html>

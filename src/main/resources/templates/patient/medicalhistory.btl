@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>${session.user.username} - 既往病史</title>
+        <link rel="stylesheet" href="${ctxPath}/css/layui.min.css">
+        <link rel="stylesheet" href="${ctxPath}/css/normalize.css" type="text/css"/>
+        <link rel="stylesheet" href="${ctxPath}/css/secondary.css" type="text/css"/>
+        <script language="javascript" type="text/javascript" src="${ctxPath}/js/KunyiHTML5.min.js"></script>
+        <script language="javascript" type="text/javascript" src="${ctxPath}/js/Kunyilibrary.js"></script>
+        <style>
+            .layui-laypage .layui-laypage-curr .layui-laypage-em {
+                background-color: #1E9FFF;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="layui-layout layui-layout-admin">
+            <!-- 引入公共头部开始 -->
+            <% include("common/header.btl"){} %>
+            <!-- 引入公共头部结束 -->
+
+            <!-- 内容主体区域 -->
+            <div class="layui-form" style="width: 1200px;margin: 40px auto;clear: both;">
+                <table class="layui-table" lay-even lay-skin="nob">
+                    <colgroup>
+                        <col width="150">
+                        <col width="150">
+                        <col width="150">
+                        <col width="300">
+                        <col>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>既往病史</th>
+                        <th>预约医生</th>
+                        <th>患病时间</th>
+                    </tr>
+                    </thead>
+                    <%for(m in page.list){%>
+                        <tr>
+                            <td>${mLP.index}</td>
+                            <td>${m.name}</td>
+                            <td>${m.doctorName}</td>
+                            <td>${m.time,'yyyy-MM-dd'}</td>
+                        </tr>
+                    <%}%>
+                </table>
+                <div id="pagination"></div>
+            </div>
+            <div style="height: 400px;"></div>
+        </div>
+        <!-- 引入公共头部开始 -->
+        <% include("common/footer.btl"){} %>
+        <!-- 引入公共头部结束 -->
+        <!-- 引入分页脚本 start -->
+        <% include("../admin/common/page.btl"){} %>
+        <!-- 引入分页脚本 end -->
+    </body>
+</html>

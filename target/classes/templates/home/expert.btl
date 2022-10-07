@@ -1,0 +1,215 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>内科 - 专家介绍 - 患者服务 - 人民医院</title>
+    <meta name="Keywords" content="人民医院,医院,人民医院官网,人民医院"/>
+    <meta name="Description"
+          content="人民医院始建于1932年，是一所集医疗、教学、科研、预防、保健、康复、急救为一体的二级甲等综合性医院。医院由新、老两个院区组成，西区医院位于商都大道2996号，占地188亩，一期建筑面积7.5万平方米，开放床位938张，于2013年7月建成投入使用。东区医院地处县城中心，解放路64号，占地35亩，医疗业务建筑面积2.2万平方米，开放床位265张。医院设置临床科室25个，医技科室8个，特殊医疗护理8个。专科齐全、分类设置合理，专业优势明显。"/>
+    <meta name="robots" content="All"/>
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=/noscript.htm"/>
+    </noscript>
+    <meta name="Author" content="miraclevision technical team,kunyi"/>
+    <meta name="Copyright" content="www.miraclevision.net,铭成奇迹"/>
+    <link rel="stylesheet" href="${ctxPath}/css/normalize.css" type="text/css"/>
+    <link rel="stylesheet" href="${ctxPath}/css/secondary.css" type="text/css"/>
+    <script language="javascript" type="text/javascript" src="${ctxPath}/js/KunyiHTML5.min.js"></script>
+    <script language="javascript" type="text/javascript" src="${ctxPath}/js/Kunyilibrary.js"></script>
+</head>
+<body>
+
+<!-- 引入公共头部开始 -->
+<% include("common/header.btl"){} %>
+<!-- 引入公共头部结束 -->
+
+<section class="listbanner banner02">
+    <div class="banner">
+        <div class="title"><h3>Expert Introduction</h3>
+            <h2>专家介绍</h2></div>
+    </div>
+</section>
+
+<section class="listmain">
+    <div class="bread">当前位置：<a href="/hospital">首页</a> > <a href="/hospital/expert">专家介绍</a></div>
+    <div class="zjjs">
+        <div class="title"></div>
+        <div class="title01">
+            <a class="active" title="内科">内科</a>
+            <a title="外科">外科</a>
+            <a title="急诊医学">急诊医学</a>
+            <a title="门诊部">门诊部</a></div>
+        <div class="doctors">
+            <ul>
+                <li>
+                    <div class="title02"><em></em><h4>内科</h4><i></i></div>
+                    <div class="list">
+                        <ul>
+                            <li>
+                                <a><img src="${ctxPath}/images/201611141810044.JPG" alt="李雷"
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>李雷</em>
+                                    <p></p></div>
+                            </li>
+                            <li>
+                                <a><img src="${ctxPath}/images/201611141904542.JPG" alt="韩梅梅 "
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>韩梅梅 </em>
+                                    <p></p></div>
+                            </li>
+                            <li>
+                                <a><img src="${ctxPath}/images/2016082914484422.jpg" alt="王一一"
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>王一一</em>
+                                    <p></p></div>
+                            </li>
+                            <li>
+                                <a><img src="${ctxPath}/images/2016082917221938.jpg" alt="刘瑞"
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>刘瑞</em>
+                                    <p></p></div>
+                            </li>
+                            </ul>
+                         </div>
+                             <div class="clear"></div>
+                         </li>
+                         <div class="title02"><em></em><h4>外科 </h4><i></i></div>
+                    <div class="list">
+                        <ul>
+                         <li>
+                          <a><img src="${ctxPath}/images/2016083014243017.jpg" alt="王五"
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>王五</em>
+                                    <p></p></div>
+                            </li>
+                            <li>
+                                <a><img src="${ctxPath}/images/2016083015093024.jpg" alt="王青"
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>王青</em>
+                                    <p></p></div>
+                            </li>
+                            <li>
+                                <a><img src="${ctxPath}/images/2016102616584315.JPG" alt="赵志"
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>赵志</em>
+                                    <p></p></div>
+                            </li>
+                             <li>
+                                <a><img src="${ctxPath}/images/2016102617041418.jpg" alt="丁丽"
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>丁丽</em>
+                                    <p></p></div>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="title02"><em></em><h4>急诊医学 </h4><i></i></div>
+                    <div class="list">
+                        <ul>                           
+                            <li>
+                                <a><img src="${ctxPath}/images/2016102617103196.JPG" alt="杨丽娟"
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>杨丽娟</em>
+                                    <p></p></div>
+                            </li>
+                            <li>
+                                <a><img src="${ctxPath}/images/2016102617183251.JPG" alt="郝新景"
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>郝新景</em>
+                                    <p></p></div>
+                            </li>
+                            <li>
+                                <a><img src="${ctxPath}/images/2016102617284261.JPG" alt="邢一川"
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>邢一川</em>
+                                    <p></p></div>
+                            </li>
+                            <li>
+                                <a><img src="${ctxPath}/images/2016102617350647.JPG" alt="朱铭"
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>朱铭</em>
+                                    <p></p></div>
+                            </li>
+                            <li>
+                                <a><img src="${ctxPath}/images/2016102617463898.JPG" alt="李鑫"
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>李鑫</em>
+                                    <p></p></div>
+                            </li>
+                                                     
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="title02"><em></em><h4>门诊部</h4><i></i></div>
+                    <div class="list">
+                        <ul>
+                            <li>
+                                <a><img src="${ctxPath}/images/2016102817232622.JPG" alt="邵一博 "
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>邵一博 </em>
+                                    <p></p></div>
+                            </li>
+                            <li>
+                                <a><img src="${ctxPath}/images/2016102918135639.JPG" alt="丁晓"
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>丁晓</em>
+                                    <p></p></div>
+                            </li>
+                            <li>
+                                <a><img src="${ctxPath}/images/2016103008565749.JPG" alt="师诗"
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>师诗</em>
+                                    <p></p></div>
+                            </li>
+                            <li>
+                                <a><img src="${ctxPath}/images/2016103009435590.JPG" alt="马勇"
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>马勇</em>
+                                    <p></p></div>
+                            </li>
+                            <li>
+                                <a><img src="${ctxPath}/images/2016110110441567.JPG" alt="王昊 "
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>王昊</em>
+                                    <p></p></div>
+                            </li>
+                            <li>
+                                <a><img src="${ctxPath}/images/2016111417035353.JPG" alt="毛磊 "
+                                        width="150" height="179"></a>
+                                <div class="txt03"><em>毛磊 </em>
+                                    <p></p></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </li>                                   
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<!-- 引入公共头部开始 -->
+<% include("common/footer.btl"){} %>
+<!-- 引入公共头部结束 -->
+<div id="Footer_CodeDiv">
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?4738677607aa7c5dccf1fe9c9a1c4d18";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</div>
+<script language="javascript" type="text/javascript" src="${ctxPath}/js/Kunyi.Common.js"></script>
+<script language="javascript" type="text/javascript" src="${ctxPath}/js/Kunyi.Secondary.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<header>
+    <h1>社区公共医疗服务管理系统</h1>
+    <a class="logo" href="/hospital">
+    <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpicnew11.photophoto.cn%2F20161201%2Fshequweishengfuwuzhongxin-23422075_1.jpg&refer=http%3A%2F%2Fpicnew11.photophoto.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655382584&t=056b5d3a25ae1ec1d9279206afe0500c" width="300" height="100"/>
+    </a>
+</header>
+<ul class="layui-nav layui-bg-blue" style="padding-left: 125px;">
+    <li class="layui-nav-item layui-this"><a href="${ctxPath}/patient/index">首页</a></li>
+    <li class="layui-nav-item"><a href="${ctxPath}/patient/search">查询</a></li>
+    <li class="layui-nav-item"><a href="${ctxPath}/patient/medicalHistory">病史</a></li>
+    <li class="layui-nav-item"><a href="${ctxPath}/patient/hospitalization">住院</a></li>
+    <li class="layui-nav-item" lay-unselect="" style="float: right;margin-right: 200px;">
+        <a href="javascript:;"><span style="font-weight: bold;">${session.user.username}</span>&nbsp;居民</a>
+        <dl class="layui-nav-child">
+            <dd><a href="${ctxPath}/home/user/logout">退出登录</a></dd>
+        </dl>
+    </li>
+</ul>

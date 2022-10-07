@@ -1,0 +1,83 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>来院路线 - 就医指南 - 人民医院</title>
+    <meta name="Keywords" content="人民医院,医院,人民医院官网,人民医院"/>
+    <meta name="Description"
+          content="东区地址：省市城关解放路64号西区地址：省市商都大道2996号乘车路线（东区）：                    汽车东站乘坐：至公交车解放路官渡西路下车，向北步行300米。                  ……"/>
+    <meta name="robots" content="All"/>
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=/noscript.htm"/>
+    </noscript>
+    <meta name="Author" content="miraclevision technical team,kunyi"/>
+    <meta name="Copyright" content="www.miraclevision.net,铭成奇迹"/>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="${ctxPath}/css/normalize.css" type="text/css"/>
+    <link rel="stylesheet" href="${ctxPath}/css/secondary.css" type="text/css"/>
+    <script language="javascript" type="text/javascript" src="${ctxPath}/js/KunyiHTML5.min.js"></script>
+    <script language="javascript" type="text/javascript" src="${ctxPath}/js/Kunyilibrary.js"></script>
+   
+</head>
+<body>
+
+<!-- 引入公共头部开始 -->
+<% include("common/header.btl"){} %>
+<!-- 引入公共头部结束 -->
+
+<section class="listbanner banner03">
+    <div class="banner">
+        <div class="title"><h3>Medical Guidelines</h3>
+            <h2>就医指南</h2></div>
+    </div>
+</section>
+<section class="BaseMark listmain">
+    <div class="bread">当前位置：<a href="/hospital">首页</a> > <a href="/hospital/guide">就医指南</a> >急诊就诊流程</div>
+    <div class="listleft">
+        <div class="slidebar">
+            <ul>
+                <li class="active"><a href="/hospital/guide" title="来院路线"><em></em>来院路线</a></li>
+                <li><a href="javascript:;" title="预约挂号"><em></em>预约挂号</a></li>
+                <li><a title="急诊就诊流程"><em></em>急诊就诊流程</a></li>
+                
+
+            </ul>
+        </div>
+        <div class="QRcode"><span>手机扫一扫关注</span><br/>人民医院官方微信</div>
+        <div class="tools"><a class="first" href="javascript:;"><em class="t01"></em>预约挂号</a><a href="/hospital/expert"><em
+                        class="t02"></em>专家介绍</a><a class="first" href="/hospital/service"><em class="t03"></em>科室介绍</a><a
+                    href="/hospital/guide"><em class="t04"></em>就医指南</a></div>
+    </div>
+    <div class="listright">
+        <div class="title">急诊就诊流程</div>
+      <div style="text-align:center;">
+                <img src="${ctxPath}/images/jz.jpg" alt=""/>
+            </p>
+            <p style="text-align:center;">
+                <br/>
+            </p>
+            </div>
+            </div>
+    <div class="clear"></div>
+</section>
+<!-- 引入公共头部开始 -->
+<% include("common/footer.btl"){} %>
+<!-- 引入公共头部结束 -->
+
+<div id="Footer_CodeDiv">
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?4738677607aa7c5dccf1fe9c9a1c4d18";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</div>
+<script language="javascript" type="text/javascript" src="${ctxPath}/js/Kunyi.Common.js"></script>
+<script language="javascript" type="text/javascript" src="${ctxPath}/js/Kunyi.Secondary.js"></script>
+</body>
+</html>

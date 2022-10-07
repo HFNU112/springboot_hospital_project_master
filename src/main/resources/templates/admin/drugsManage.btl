@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>药品管理</title>
+    <link rel="stylesheet" href="${ctxPath}/css/layui.min.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!-- 引入公共头部开始 -->
+    <% include("common/header.btl"){} %>
+    <!-- 引入公共头部结束 -->
+
+    <div class="layui-body">
+        <div style="padding: 15px;">
+            <h5>药品管理</h5>
+            <form action="${ctxPath}/admin/drugs/manage" method="get" class="layui-form">
+                <table>
+                    <tr>
+                        <td>药品名称:</td>
+                        <td><input name="name" value="${name!''}" autocomplete="off"  class="layui-input lay-size=sm" ></td>
+                        <td>&nbsp;&nbsp;药品类型:</td>
+                        <td>
+                            <select name="type">
+                                <option value="">请选择药品类型</option>
+                                <option value="0" >颗粒剂</option>
+                                <option value="1" >丸剂</option>
+                                <option value="2" >散剂</option>
+                                <option value="3" >酊剂</option>
+                                <option value="4" >片剂</option>
+                                <option value="5" >胶囊剂</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="layui-btn" type="submit"><i class="layui-icon">&#xe615;</i></button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <!-- 内容主体区域 -->
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col width="200">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>药品名称</th>
+                    <th>药品类型</th>
+                    <th>数量（盒）</th>
+                    <th>单价（盒/元）</th>
+                    <th>操作&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="layui-btn" onclick="showAdd('${ctxPath}/admin/drugs/')"><i class="layui-icon">&#xe608;</i> 添加</button>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% for(d in page.list) { %>
+                        <tr>
+                            <td>${dLP.index}</td>
+                            <td>${d.name}</td>
+                            <td>
+                                <%
+                                    switch(d.type) {
+                                        case 0 :
+                                                print("颗粒剂");
+                                                break;
+                                        case 1 :
+                                                print("丸剂");
+                                                break;
+                                        case 2 :
+                                                print("散剂");
+                                                break;
+                                        case 3 :
+                                                print("酊剂");
+                                                break;
+                                        case 4 :
+                                                print("片剂");
+                                                break;
+                                        case 4 :
+                                                print("胶囊剂");
+                                                break;
+                                        default :
+                                                print("error");
+                                    }
+                                %>
+                            </td>
+                            <td>${d.number}</td>
+                            <td>${d.price}</td>
+                            <td>
+                                <button class="layui-btn" onclick="edit('${ctxPath}/admin/drugs/',${d.id})"><i class="layui-icon">&#xe642;</i></button>
+                                <button class="layui-btn" onclick="del('${ctxPath}/admin/drugs/',${d.id})"><i class="layui-icon">&#xe640;</i></button>
+                            </td>
+                        </tr>
+                    <%}%>
+                </tbody>
+            </table>
+            <div id="pagination"></div>
+        </div>
+    </div>
+    <!-- 引入公共脚部文件开始 -->
+    <% include("common/footer.btl"){} %>
+    <!-- 引入公共脚部文件结束 -->
+    <!-- 引入公共分页脚本文件开始 -->
+    <% include("common/page.btl"){} %>
+    <!-- 引入公共分页脚本文件结束 -->
+</div>
+</body>
+</html>

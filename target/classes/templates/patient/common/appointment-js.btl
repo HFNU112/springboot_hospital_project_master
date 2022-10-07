@@ -1,0 +1,94 @@
+<script src="${ctxPath}/js/layui.all.js"></script>
+<script src="${ctxPath}/js/jquery-3.3.1.min.js"></script>
+<script>
+    function createPDF() {
+        $.ajax({
+            url: "${ctxPath}/patient/appointment/createPDF",
+            type: 'post',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                window.open("${ctxPath}/patient/appointment/downPDF");
+                layer.msg(data.message, {
+                    time: 2000, //2s后自动关闭
+                });
+
+            },
+            error: function (data) {
+                layer.msg(data.message, {
+                    time: 2000, //2s后自动关闭
+                });
+            }
+        });
+        return false
+    }
+
+    function appointment() {
+        var d = {};
+        var t = $('form').serializeArray();
+        $.each(t, function () {
+            d[this.name] = this.value;
+        });
+        var json = JSON.stringify(d);
+        $.ajax({
+            url: "${ctxPath}/patient/appointment",
+            type: 'post',
+            data: json,
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                layer.msg(data.message, {
+                    time: 2000, //2s后自动关闭
+                },function () {
+                    layer.confirm('是否打印挂号单？', {
+                        btn: ['打印','取消'] //按钮
+                    }, function(){
+                        createPDF();
+                    }, function(){
+                        layer.msg('取消成功', {
+                            time: 2000, //20s后自动关闭
+                        },function () {
+                            window.location.href = "${ctxPath}/patient/index";
+                        });
+                    });
+
+                });
+            },
+            error: function (data) {
+                layer.msg(data.message, {
+                    time: 2000, //2s后自动关闭
+                });
+            }
+        });
+        return false
+    }
+
+    layui.use(['layer', 'form'], function () {
+        var layer = layui.layer
+            , form = layui.form;
+        form.on('select(department)', function (data) {
+            var department = (data.value);
+            $.ajax({
+                type: 'GET',
+                url: '${ctxPath}/doctor/getList/' + department,
+                dataType: 'json',
+                success: function (data) {
+                    $("#doctorId").empty();
+                    data.forEach(function (item) {
+                        var name = item.name;
+                        var expert = item.expert;
+                        if(expert==0){
+                            expert='非专家';
+                        }
+                        else {
+                            expert='专家';
+                        }
+                        console.log(name);
+                        var id = item.id;
+                        console.log(id);
+                        $("#doctorId").append("<option value=" + id + ">" + name +"----"+expert+"</option>");
+                    });
+                    form.render('select');
+                }
+            });
+        });
+    });
+</script>

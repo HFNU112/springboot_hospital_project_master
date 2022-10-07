@@ -1,0 +1,25 @@
+<script src="${ctxPath}/js/layui.all.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+    layui.use('laypage', function(){
+        var laypage = layui.laypage;
+
+        //执行一个laypage实例
+        laypage.render({
+            elem: 'pagination' //注意，这里的 test1 是 ID，不用加 # 号
+            ,count: '${page.totalRow}' //数据总数，从服务端得到
+            ,limit:5
+            ,curr:'${pageNo}'
+            ,jump: function(obj,first){
+                //非第一次执行
+                if (!first) {
+                    window.location.href = "${ctxPath}${path}?pageNo=" + obj.curr + "&pageSize=" + obj.limit;
+                }
+            }
+        });
+    });
+</script>

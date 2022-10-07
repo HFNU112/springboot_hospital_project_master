@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>患者页面管理</title>
+    <link rel="stylesheet" href="${ctxPath}/css/layui.min.css">
+</head>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <!-- 引入公共头部开始 -->
+        <% include("common/header.btl"){} %>
+        <!-- 引入公共头部结束 -->
+
+        <div class="layui-body">
+
+            <!-- 内容主体区域 -->
+            <div style="padding: 15px;">
+                <h5>
+                    <span class="layui-breadcrumb">
+                      <a href="javascript:;">系统管理</a>
+                      <a><cite>患者管理</cite></a>
+                    </span>
+                </h5>
+                <form action="${ctxPath}/admin/patient/manage" method="get">
+                    <table>
+                        <tr>
+                            <td>昵称:</td>
+                            <td><input name="name" value="${name!''}" autocomplete="off"  class="layui-input lay-size=sm" ></td>
+                            <td>&nbsp;&nbsp;证件号:</td>
+                            <td><input name="certId" value="${certId!''}" autocomplete="off" class="layui-input lay-size=sm" ></td>
+                            <td>   <button class="layui-btn" type="submit"><i class="layui-icon">&#xe615;</i></button></td>
+                    </tr>
+                    </table>
+                </form>
+            </div>
+            <table class="layui-table">
+                <colgroup>
+                    <col width="100">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>昵称</th>
+                    <th>年纪</th>
+                    <th>性别</th>
+                    <th>证件号</th>
+                    <th>主治医生</th>
+                    <th>是否出院</th>
+                    <th>家庭住址</th>
+                    <th>操作&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="layui-btn" onclick="showAdd('${ctxPath}/admin/patient/')"><i class="layui-icon">&#xe608;</i> 添加</button>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% for(p in page.list){ %>
+                        <tr>
+                            <td>${pLP.index}</td>
+                            <td>${p.name}</td>
+                            <td>${p.age}</td>
+                            <td>
+                                ${p.sex == 0 ? '男' : '女'}
+                            </td>
+                            <td>${p.certId}</td>
+                            <td>${p.doctorName==null?'':p.doctorName}</td>
+                            <td>
+                                <%
+                                    switch(p.isout==null?0:p.isout) {
+                                        case 0 :
+                                                print("未入院");
+                                                break;
+                                        case 1 :
+                                                print("已入院");
+                                                break;
+                                        case 2 :
+                                                print("已出院");
+                                                break;
+                                        default :
+                                                print("error");
+                                    }
+                                %>
+                            </td>
+                            <td>${p.address}</td>
+                            <td>
+                                <button class="layui-btn" onclick="edit('${ctxPath}/admin/patient/',${p.id})"><i class="layui-icon">&#xe642;</i></button>
+                                <button class="layui-btn" onclick="del('${ctxPath}/admin/patient/',${p.id})"><i class="layui-icon">&#xe640;</i></button>
+                            </td>
+                        </tr>
+                    <%}%>
+                </tbody>
+            </table>
+            <div id="pagination"></div>
+        </div>
+        <!-- 引入公共脚部文件开始 -->
+        <% include("common/footer.btl"){} %>
+        <!-- 引入公共脚部文件结束 -->
+        <!-- 引入公共分页脚本文件开始 -->
+        <% include("common/page.btl"){} %>
+        <!-- 引入公共分页脚本文件结束 -->
+    </div>
+</body>
+</html>

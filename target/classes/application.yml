@@ -1,0 +1,33 @@
+###### WEB 路径 端口 ######
+server:
+  servlet:
+    context-path: /hos
+  port: 9000
+
+################### beetsql配置 ########################
+# 默认是true，即向控制台输出执行时候的sql，参数，执行时间，以及执行的位置，每次修改sql文件的时候，自动检测sql文件修改
+beetl-beetlsql:
+  dev: true
+beetlsql:
+  basePackage: com.lb.dao
+  # sql 文件的位置
+  sqlPath: /sql
+  daoSuffix: Dao  #作用：
+  dbStyle: org.beetl.sql.core.db.MySqlStyle
+
+################### mysql数据库连接配置 #################
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/community-hospital?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=CTT
+    username: root
+    password: root
+
+beetl:
+  templatesPath: /templates/
+
+
+#文件上传路径配置
+filepath:
+  appointpdf: D:\edwarder\upload\
+  seekpdfpath: D:\edwarder\upload\
