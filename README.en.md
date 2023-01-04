@@ -1,36 +1,15 @@
 # springboot_hospital_project_master
+# 社区医疗资源公共服务管理系统
 
-#### Description
-社区医疗资源公共服务管理系统
+#### 项目介绍
+医疗系统基于SSM后端框架和bootsrap前端技术提供健康管理、疾病预防和就医服务一体化的综合健康管理平台。项目包括用户网页端、用户小程序端、后台管理端，可供居民、医生和管理员三种角色来使用。医疗系统主要是3条业务线，1. 居民可以通过移动终端预约就医服务；2. 医生查看就诊记录；3. 管理员对医生和居民的权限更新。作为初级开发工程师熟悉单表或多表增、删、改、查、分页查询、条件模糊+分页查询 ... ... 作为计算机专业毕业班的可以选择作为毕业设计... ... 麻雀虽小，但五脏俱全... 
 
-#### Software Architecture
-Software architecture description
+#### 技术栈
+Spring+SpringMVC+MyBatis+SpringBoot+MySQL+boostrap+element ui+Apache POI+阿里云(存储服务)
 
-#### Installation
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### Instructions
+#### 项目演示
 
 1.  xxxx
 2.  xxxx
 3.  xxxx
 
-#### Contribution
-
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
-
-
-#### Gitee Feature
-
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
