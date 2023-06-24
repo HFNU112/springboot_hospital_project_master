@@ -10,7 +10,7 @@
     <li class="layui-nav-item"><a href="${ctxPath}/patient/medicalHistory">病史</a></li>
     <li class="layui-nav-item"><a href="${ctxPath}/patient/hospitalization">住院</a></li>
     <li class="layui-nav-item" lay-unselect="" style="float: right;margin-right: 200px;">
-        <a href="javascript:;"><span style="font-weight: bold;">${session.user.username}</span>&nbsp;居民</a>
+        <a href="javascript:;"><span style="font-weight: bold;">${patient.name}</span>&nbsp;居民</a>
         <dl class="layui-nav-child">
             <dd><a href="${ctxPath}/home/user/logout">退出登录</a></dd>
         </dl>

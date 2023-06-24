@@ -58,7 +58,6 @@ public class DoctorController {
      * @return
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
     public String doctorEditForm(@PathVariable Integer id, Model model) {
         model.addAttribute("doctor", lbDoctorService.findOne(id));
         return "admin/doctorForm";
