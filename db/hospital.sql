@@ -298,8 +298,7 @@ CREATE TABLE `lb_user` (
 -- Records of lb_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `lb_user` VALUES (1, 'admin1', '123456', 1);
-INSERT INTO `lb_user` VALUES (2, 'admin2', '123456', 1);
+INSERT INTO `lb_user` VALUES (1, 'admin', 'admin123', 1);
 INSERT INTO `lb_user` VALUES (3, 'hanmeimei', '123456', 2);
 INSERT INTO `lb_user` VALUES (4, 'lilei', '123456', 2);
 INSERT INTO `lb_user` VALUES (5, 'haoyi', '123456', 3);
@@ -307,18 +306,14 @@ INSERT INTO `lb_user` VALUES (6, 'liyiyi', '123456', 3);
 INSERT INTO `lb_user` VALUES (7, 'zhangxiaoxiao', '123456', 3);
 INSERT INTO `lb_user` VALUES (8, 'wumei', '123456', 3);
 INSERT INTO `lb_user` VALUES (9, 'nini', '123456', 3);
-INSERT INTO `lb_user` VALUES (10, 'admin3', '123456', 1);
-INSERT INTO `lb_user` VALUES (11, 'admin4', '123456', 1);
 INSERT INTO `lb_user` VALUES (12, 'zhaozhi', '12345', 2);
-INSERT INTO `lb_user` VALUES (14, 'admin5', '123456', 1);
-INSERT INTO `lb_user` VALUES (15, 'admin7', '123456', 1);
 INSERT INTO `lb_user` VALUES (17, 'wangwu', '123456', 2);
 INSERT INTO `lb_user` VALUES (18, 'yanglijuan', '123456', 2);
 INSERT INTO `lb_user` VALUES (19, 'sunzhi', '123456', 3);
 INSERT INTO `lb_user` VALUES (20, 'wangyiyi', '123456', 2);
-INSERT INTO `lb_user` VALUES (24, 'tony', '1', 1);
-INSERT INTO `lb_user` VALUES (25, 'xiaoliu', '1', 2);
-INSERT INTO `lb_user` VALUES (26, 'wangxiao2', '1', 3);
+INSERT INTO `lb_user` VALUES (24, 'tony', '123456', 1);
+INSERT INTO `lb_user` VALUES (25, 'xiaoliu', '123456', 2);
+INSERT INTO `lb_user` VALUES (26, 'wangxiao2', '123456', 3);
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
